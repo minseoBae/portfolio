@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+# 포트폴리오 웹사이트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Next.js와 TypeScript를 사용하여 제작한 모던하고 반응형 포트폴리오 웹사이트입니다.
 
-## Available Scripts
+## 🚀 기술 스택
 
-In the project directory, you can run:
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: TailwindCSS
+- **Icons**: Lucide React
+- **Font**: Inter (Google Fonts)
 
-### `npm start`
+## ✨ 주요 기능
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 📱 완전 반응형 디자인
+- 🎨 모던하고 깔끔한 UI/UX
+- ⚡ 빠른 로딩 속도 (Next.js 최적화)
+- ♿ 접근성 고려 (ARIA 라벨, 키보드 네비게이션)
+- 📧 연락처 폼
+- 🎯 스무스 스크롤 네비게이션
+- 🌙 다크모드 준비 (향후 구현 가능)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📁 프로젝트 구조
 
-### `npm test`
+```
+portfolio/
+├── app/
+│   ├── layout.tsx          # 루트 레이아웃
+│   ├── page.tsx            # 메인 페이지
+│   └── globals.css         # 글로벌 스타일
+├── components/
+│   ├── Header.tsx          # 네비게이션 헤더
+│   ├── Hero.tsx            # 히어로 섹션
+│   ├── About.tsx           # 소개 섹션
+│   ├── Skills.tsx          # 기술 스택 섹션
+│   ├── Projects.tsx        # 프로젝트 섹션
+│   ├── Contact.tsx         # 연락처 섹션
+│   └── Footer.tsx          # 푸터
+├── public/                 # 정적 파일
+├── tailwind.config.js      # TailwindCSS 설정
+├── next.config.js          # Next.js 설정
+├── tsconfig.json           # TypeScript 설정
+└── package.json            # 의존성 관리
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ 설치 및 실행
 
-### `npm run build`
+1. **의존성 설치**
+   ```bash
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **개발 서버 실행**
+   ```bash
+   npm run dev
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **브라우저에서 확인**
+   ```
+   http://localhost:3000
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📦 빌드 및 배포
 
-### `npm run eject`
+1. **프로덕션 빌드**
+   ```bash
+   npm run build
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. **프로덕션 서버 실행**
+   ```bash
+   npm start
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🎨 커스터마이징
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 색상 테마 변경
+`tailwind.config.js` 파일에서 primary 색상을 수정할 수 있습니다:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```javascript
+theme: {
+  extend: {
+    colors: {
+      primary: {
+        50: '#eff6ff',
+        100: '#dbeafe',
+        // ... 더 많은 색상 변형
+        900: '#1e3a8a',
+      },
+    },
+  },
+}
+```
 
-## Learn More
+### 콘텐츠 수정
+각 컴포넌트 파일에서 개인 정보, 프로젝트, 기술 스택 등을 수정할 수 있습니다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📱 반응형 브레이크포인트
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Mobile**: < 768px
+- **Tablet**: 768px - 1024px
+- **Desktop**: > 1024px
 
-### Code Splitting
+## 🔧 추가 기능 구현 예정
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- [ ] 다크모드 토글
+- [ ] 다국어 지원 (한국어/영어)
+- [ ] 블로그 섹션
+- [ ] 애니메이션 효과 (Framer Motion)
+- [ ] SEO 최적화
+- [ ] PWA 지원
 
-### Analyzing the Bundle Size
+## 📄 라이선스
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+MIT License
 
-### Making a Progressive Web App
+## 👨‍💻 개발자
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+프론트엔드 개발자 포트폴리오
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**참고**: 이 프로젝트는 Next.js 14의 App Router를 사용하여 제작되었습니다.
