@@ -1,38 +1,37 @@
 const Skills = () => {
   const skillCategories = [
     {
-      category: 'Frontend',
+      category: 'Backend',
       skills: [
-        { name: 'React', level: 90 },
-        { name: 'Next.js', level: 85 },
-        { name: 'TypeScript', level: 80 },
-        { name: 'JavaScript', level: 95 },
-        { name: 'HTML/CSS', level: 90 },
-        { name: 'TailwindCSS', level: 85 }
+        { name: 'Java', level: 85 },
+        { name: 'Spring Boot (Security, Batch, JPA)', level: 80 },
+        { name: 'Kotlin', level: 65 },
+        { name: 'Python (Embedding)', level: 60 }
       ]
     },
     {
-      category: 'Backend & Tools',
+      category: 'Framework / Library',
       skills: [
-        { name: 'Node.js', level: 75 },
-        { name: 'Git', level: 85 },
-        { name: 'Docker', level: 70 },
-        { name: 'AWS', level: 65 },
-        { name: 'MongoDB', level: 70 },
-        { name: 'PostgreSQL', level: 65 }
+        { name: 'React', level: 80 },
+        { name: 'Kafka (+Kafka UI, Kraft 모드)', level: 70 },
+        { name: 'RabbitMQ', level: 65 }
       ]
     },
     {
-      category: 'Design & Others',
+      category: 'Database',
       skills: [
-        { name: 'Figma', level: 80 },
-        { name: 'Adobe XD', level: 75 },
-        { name: 'Jest', level: 80 },
-        { name: 'Cypress', level: 70 },
-        { name: 'Webpack', level: 75 },
-        { name: 'Vite', level: 80 }
+        { name: 'MySQL', level: 75 },
+        { name: 'Redis', level: 70 },
+        { name: 'ElasticSearch (+Kibana)', level: 70 }
       ]
     }
+  ]
+
+  const additionalSkills = [
+    // Tooling / DevOps
+    'Docker', 'Docker Compose', 'Git', 'AWS EC2', 'Google Cloud',
+    // ETC
+    'REST API', 'OAuth 2.0', 'Jsoup', 'OpenAPI', 'Swagger API'
   ]
 
   return (
@@ -43,7 +42,7 @@ const Skills = () => {
             기술 스택
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            다양한 프로젝트를 통해 습득한 기술들과 현재 학습 중인 기술들입니다.
+            실제 프로젝트와 학습을 통해 익힌 주요 기술들입니다.
           </p>
         </div>
 
@@ -83,11 +82,7 @@ const Skills = () => {
             추가 기술
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {[
-              'Redux', 'Zustand', 'React Query', 'GraphQL', 'REST API',
-              'PWA', 'SEO', 'Performance', 'Accessibility', 'Testing',
-              'CI/CD', 'Agile', 'Scrum', 'Jira', 'Slack', 'Notion'
-            ].map((skill, index) => (
+            {additionalSkills.map((skill, index) => (
               <div
                 key={index}
                 className="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-shadow duration-200"

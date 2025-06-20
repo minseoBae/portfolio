@@ -29,11 +29,11 @@ const Hero = () => {
 
           {/* Main Content */}
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            안녕하세요, <span className="text-primary-600">프론트엔드 개발자</span>입니다
+            안녕하세요, <span className="text-primary-600">신입 백엔드 개발자 배민서</span>입니다
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            사용자 경험을 중시하며, 모던하고 반응형 웹 애플리케이션을 만드는 것을 좋아합니다.
+          새로운 기술에 대한 도전을 두려워하지 않고, 함께 성장하는 커뮤니케이션 중심의 개발자입니다.
           </p>
 
           {/* CTA Buttons */}

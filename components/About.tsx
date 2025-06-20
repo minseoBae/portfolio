@@ -1,21 +1,22 @@
-import { User, Code, Heart, Database, Server, Zap } from 'lucide-react'
+import { User, Code, Heart, Database, Server, Zap, Lightbulb, Users } from 'lucide-react'
+import Image from 'next/image'
 
 const About = () => {
   const features = [
     {
-      icon: <Database className="w-8 h-8" />,
-      title: '안정적인 백엔드',
-      description: '견고하고 확장 가능한 서버 아키텍처를 설계하여 안정적인 서비스를 제공합니다.'
-    },
-    {
-      icon: <Code className="w-8 h-8" />,
-      title: '깔끔한 코드',
-      description: '유지보수가 용이하고 확장 가능한 코드를 작성하는 것을 중요시합니다.'
+      icon: <Lightbulb className="w-8 h-8" />,
+      title: '직접 해보며 배우는',
+      description: '이론에 그치지 않고 실제로 구현해보며 구조를 이해하고 실력을 키워갑니다.'
     },
     {
       icon: <Zap className="w-8 h-8" />,
-      title: '빠른 학습',
-      description: '새로운 기술과 트렌드를 빠르게 익히고 팀에 긍정적인 에너지를 더합니다.'
+      title: '빠른 학습과 실행',
+      description: '새로운 기술에 대한 도전을 두려워하지 않고 빠르게 이해하여 실전에 적용합니다.'
+    },
+    {
+      icon: <Users className="w-8 h-8" />,
+      title: '함께 성장하는',
+      description: '상대방의 입장을 고려하며 원활한 소통을 통해 팀과 함께 성장합니다.'
     }
   ]
 
@@ -31,16 +32,19 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid md:grid-cols-[400px_1fr] gap-8 items-center mb-16">
           {/* Profile Image */}
           <div className="flex justify-center md:justify-start">
             <div className="relative">
-              <div className="w-80 h-80 bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex items-center justify-center shadow-lg">
-                <div className="text-center text-primary-600">
-                  <User className="w-24 h-24 mx-auto mb-4" />
-                  <p className="text-lg font-medium">프로필 사진</p>
-                  <p className="text-sm text-primary-500">여기에 사진을 추가하세요</p>
-                </div>
+              <div className="w-80 h-80 bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src="/profileImage.png"
+                  alt="배민서 프로필 사진"
+                  width={320}
+                  height={320}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </div>
               <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-primary-500 rounded-full flex items-center justify-center text-white shadow-lg">
                 <Server className="w-10 h-10" />
@@ -51,21 +55,20 @@ const About = () => {
           {/* About Text */}
           <div>
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              백엔드 개발자로서의 여정
+              개발자로서의 성장 방식
             </h3>
             <div className="space-y-4 text-gray-600">
               <p>
-                새로운 기술을 빠르게 익히고, 팀에 긍정적인 에너지를 더하는 것이 저의 강점입니다.
-                서버 사이드 개발에 대한 깊은 이해와 데이터베이스 설계 능력을 바탕으로 
-                안정적이고 확장 가능한 백엔드 시스템을 구축합니다.
+                저는 해보고 싶은 건 직접 해보며 배우는 개발자입니다. 항상 "이 시스템은 내가 만든다면 어떻게 구현할까?"라는 
+                고민을 바탕으로, 필요하다고 느낀 기능이나 아이디어는 직접 개발해보며 구조를 이해하고 실력을 키워왔습니다.
               </p>
               <p>
-                Node.js, Python, Java 등 다양한 백엔드 기술 스택을 활용하여 
-                효율적이고 유지보수가 용이한 API와 서비스를 개발합니다.
+                새로운 기술에 대한 도전을 두려워하지 않습니다. 생소한 기술이라도 빠르게 학습하여 직접 구현해보고, 
+                그 과정에서 얻는 깨달음과 성취감에서 큰 즐거움을 느끼고 있습니다.
               </p>
               <p>
-                지속적인 학습과 도전을 통해 더 나은 개발자가 되기 위해 노력하며, 
-                팀원들과의 협업을 통해 최고의 결과물을 만들어내는 것을 목표로 합니다.
+                함께 성장하는 커뮤니케이션 중심의 개발자입니다. 상대방의 입장과 의도를 고려하며 의견을 나누고, 
+                원활한 소통을 통해 팀과 함께 성장하는 것을 중요하게 생각합니다.
               </p>
             </div>
           </div>
@@ -74,20 +77,20 @@ const About = () => {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           <div className="text-center p-6 bg-primary-50 rounded-lg">
-            <div className="text-3xl font-bold text-primary-600 mb-2">신입</div>
-            <div className="text-gray-600">개발자</div>
+            <div className="text-3xl font-bold text-primary-600 mb-2">직접</div>
+            <div className="text-gray-600">구현하는</div>
           </div>
           <div className="text-center p-6 bg-primary-50 rounded-lg">
-            <div className="text-3xl font-bold text-primary-600 mb-2">5+</div>
-            <div className="text-gray-600">기술 스택</div>
+            <div className="text-3xl font-bold text-primary-600 mb-2">빠른</div>
+            <div className="text-gray-600">학습력</div>
           </div>
           <div className="text-center p-6 bg-primary-50 rounded-lg">
-            <div className="text-3xl font-bold text-primary-600 mb-2">100%</div>
-            <div className="text-gray-600">학습 의지</div>
+            <div className="text-3xl font-bold text-primary-600 mb-2">함께</div>
+            <div className="text-gray-600">성장하는</div>
           </div>
           <div className="text-center p-6 bg-primary-50 rounded-lg">
-            <div className="text-3xl font-bold text-primary-600 mb-2">∞</div>
-            <div className="text-gray-600">성장 가능성</div>
+            <div className="text-3xl font-bold text-primary-600 mb-2">도전</div>
+            <div className="text-gray-600">정신</div>
           </div>
         </div>
 

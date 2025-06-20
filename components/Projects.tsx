@@ -3,64 +3,35 @@ import { ExternalLink, Github, Calendar, Users } from 'lucide-react'
 const Projects = () => {
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'Next.js와 TypeScript를 사용한 풀스택 이커머스 플랫폼. 결제 시스템, 관리자 대시보드, 반응형 디자인을 포함합니다.',
+      title: '트렌드 기반 상호명 추천 웹사이트(상추)',
+      description: '사용자의 업종에 맞는 트렌디한 가게 이름을 제안해주는 웹사이트',
       image: '/api/placeholder/400/250',
-      technologies: ['Next.js', 'TypeScript', 'TailwindCSS', 'Stripe', 'MongoDB'],
-      github: 'https://github.com',
-      live: 'https://example.com',
-      date: '2024',
-      team: 'Solo'
+      technologies: ['Spring', 'MySQL', 'Elasticsearch', 'Kibana', 'Docker & Docker Compose', 'Nginx', 'React', 'JavaScript', 'Java', 'Python'],
+      github: 'https://github.com/BESP-LLL3',
+      live: 'https://app.sangchu.xyz',
+      date: '2025.04.10 2025.05.08',
+      team: '4명(Backend 4명)'
     },
     {
-      title: 'Task Management App',
-      description: 'React와 Firebase를 활용한 실시간 협업 태스크 관리 애플리케이션. 드래그 앤 드롭, 실시간 업데이트 기능을 제공합니다.',
+      title: '맞춤형 영화관 찾기 서비스(CineFinder)',
+      description: '전국의 상영 정보를 한 눈에 비교하고 검색할 수 있는 통합 영화 정보 서비스',
       image: '/api/placeholder/400/250',
-      technologies: ['React', 'Firebase', 'Material-UI', 'React DnD'],
-      github: 'https://github.com',
+      technologies: ['Spring Boot(+JPA, Security)', 'MySQL', 'Elasticsearch', 'Redis', 'Kafka', 'RabbitMQ', 
+        'WebSocket', 'JWT', 'OAuth 2.0', 'RESTful API', 'Git', 'Docker', 'Nginx', 'React', 'JavaScript'],
+      github: 'https://github.com/BESP-CineFinder',
       live: 'https://example.com',
-      date: '2023',
-      team: '3명'
+      date: '2025.05.09 ~ 2025.06.04',
+      team: '4명(Backend 4명)'
     },
     {
-      title: 'Portfolio Website',
-      description: '모던하고 반응형 포트폴리오 웹사이트. SEO 최적화, 다크모드, 애니메이션 효과를 포함합니다.',
+      title: '가상 화폐 거래 체험(KMBBJ)',
+      description: '실제 돈이 아닌 가상의 자산을 사용하여 코인을 사고팔고, 시장의 변동성을 체험할 수 있습니다. 이를 통해 사용자는 실제 거래의 복잡성과 위험을 이해하고, 전략을 개발하며, 친구들과 경쟁할 수 있습니다.',
       image: '/api/placeholder/400/250',
-      technologies: ['Next.js', 'TailwindCSS', 'Framer Motion', 'TypeScript'],
-      github: 'https://github.com',
+      technologies: ['Java', 'Spring Boot', 'PostgreSQL', 'REDIS', 'Cassandra', 'JPA', 'Docker', 'Jenkins', 'AWS', 'GCP'],
+      github: 'https://github.com/KMBBJ',
       live: 'https://example.com',
-      date: '2024',
-      team: 'Solo'
-    },
-    {
-      title: 'Weather Dashboard',
-      description: '실시간 날씨 정보를 제공하는 대시보드. 위치 기반 서비스, 차트 시각화, 알림 기능을 포함합니다.',
-      image: '/api/placeholder/400/250',
-      technologies: ['React', 'Chart.js', 'OpenWeather API', 'PWA'],
-      github: 'https://github.com',
-      live: 'https://example.com',
-      date: '2023',
-      team: 'Solo'
-    },
-    {
-      title: 'Social Media Clone',
-      description: 'Instagram 스타일의 소셜 미디어 클론. 이미지 업로드, 댓글, 좋아요, 팔로우 기능을 구현했습니다.',
-      image: '/api/placeholder/400/250',
-      technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'AWS S3'],
-      github: 'https://github.com',
-      live: 'https://example.com',
-      date: '2023',
-      team: '4명'
-    },
-    {
-      title: 'AI Chat Application',
-      description: 'OpenAI API를 활용한 AI 채팅 애플리케이션. 실시간 대화, 히스토리 저장, 마크다운 렌더링 기능을 제공합니다.',
-      image: '/api/placeholder/400/250',
-      technologies: ['Next.js', 'OpenAI API', 'Prisma', 'PostgreSQL', 'Vercel'],
-      github: 'https://github.com',
-      live: 'https://example.com',
-      date: '2024',
-      team: 'Solo'
+      date: '2024.08.01 ~ 2024.12.12',
+      team: '5명(Backend 5명)'
     }
   ]
 
