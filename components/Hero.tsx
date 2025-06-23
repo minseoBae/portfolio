@@ -1,6 +1,6 @@
 'use client'
 
-import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react'
+import { ChevronDown, Github, Linkedin, Mail, BookOpen } from 'lucide-react'
 
 const Hero = () => {
   const handleScrollDown = () => {
@@ -58,7 +58,7 @@ const Hero = () => {
               <Github size={24} />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/minseobae03151999"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-primary-600 transition-colors duration-200"
@@ -67,11 +67,20 @@ const Hero = () => {
               <Linkedin size={24} />
             </a>
             <a
-              href="mailto:contact@example.com"
+              href="mailto:baejjae8218@gmail.com"
               className="text-gray-600 hover:text-primary-600 transition-colors duration-200"
               aria-label="이메일 보내기"
             >
               <Mail size={24} />
+            </a>
+            <a
+              href="https://boat-push.tistory.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-primary-600 transition-colors duration-200"
+              aria-label="블로그 보기"
+            >
+              <BookOpen size={24} />
             </a>
           </div>
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, Github, Linkedin, BookOpen } from 'lucide-react'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -59,14 +59,14 @@ const Contact = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: '이메일',
-      value: 'contact@example.com',
-      link: 'mailto:contact@example.com'
+      value: 'baejjae8218@gmail.com',
+      link: 'mailto:baejjae8218@gmail.com'
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: '전화번호',
-      value: '+82 10-1234-5678',
-      link: 'tel:+821012345678'
+      value: '+82 10-4107-3358',
+      link: 'tel:+821041073358'
     },
     {
       icon: <MapPin className="w-6 h-6" />,
@@ -80,20 +80,20 @@ const Contact = () => {
     {
       icon: <Github className="w-6 h-6" />,
       name: 'GitHub',
-      url: 'https://github.com',
+      url: 'https://github.com/minseoBae',
       color: 'hover:text-gray-900'
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
       name: 'LinkedIn',
-      url: 'https://linkedin.com',
+      url: 'https://www.linkedin.com/in/minseobae03151999',
       color: 'hover:text-blue-600'
     },
     {
-      icon: <Twitter className="w-6 h-6" />,
-      name: 'Twitter',
-      url: 'https://twitter.com',
-      color: 'hover:text-blue-400'
+      icon: <BookOpen className="w-6 h-6" />,
+      name: 'Blog',
+      url: 'https://boat-push.tistory.com/',
+      color: 'hover:text-orange-600'
     }
   ]
 
