@@ -240,74 +240,39 @@ const Projects = () => {
               {
                 "src": "/troubleshootingImage/troubleshooting5-1.png",
                 "caption": "Redis 캐시를 도입한 실시간 로그 처리 아키텍처",
-                "width": "w-full"
+                "width": "w-3/5"
               },
               {
-                "src": "/troubleshootingImage/your-data-flow-chart.png",
+                "src": "/troubleshootingImage/troubleshooting5-2.png",
                 "caption": "사용자 요청 시 데이터 조합 흐름도",
                 "width": "w-4/5"
               }
             ]
           },
           {
-            title: 'Redis 캐시 성능 문제',
-            problem: 'Redis Cluster 구성을 통해 캐시 성능을 향상시켰습니다.',
-            details: [
-              '단일 Redis 인스턴스로 인한 성능 병목',
-              '대용량 데이터 처리 시 메모리 부족',
-              '캐시 미스율 증가로 인한 응답 지연'
+            "title": "서버 수평 확장 시 동시 실행 문제 해결",
+            "problem": "Docker로 동일한 Spring 서버 인스턴스를 2개 운영하는 수평 확장 환경에서, 서버 기동 시 수행되는 영화 데이터 수집 로직이 두 인스턴스에서 동시에 실행되며 동일한 Elasticsearch 인덱스 생성 요청이 중복되어 충돌이 발생했습니다.",
+            "details": [
+              "부하 분산을 위해 동일한 Spring 인스턴스 2개를 수평 확장",
+              "애플리케이션 시작 시 실행되는 인덱스 생성/데이터 수집 로직이 두 인스턴스 모두에서 동시 수행",
+              "Elasticsearch에 동일한 인덱스 이름으로 동시 생성 요청 → 충돌 및 일부 인스턴스의 수집 로직 실패, 비정상 종료"
             ],
-            solutions: [
-              'Redis Cluster 구성을 통해 캐시 성능을 향상',
-              '캐시 키 전략 최적화로 캐시 히트율 개선',
-              'TTL 설정을 통한 메모리 사용량 최적화'
+            "solutions": [
+              "Redis 기반 분산 Lock 적용으로 단일 인스턴스만 인덱스 생성 및 초기 수집 로직 수행",
+              "Lock 보유 인스턴스만 실행하고, 나머지 인스턴스는 Lock 해제 전까지 해당 초기화 로직을 건너뛰도록 가드 로직 추가",
+              "인덱스 존재 시 안전하게 건너뛰도록 Idempotent한 인덱스 생성 체크(존재 여부 확인 후 생성) 적용",
+              "컨테이너 재시작/비정상 종료 대비를 위해 Lock에 TTL 설정 및 만료/해제 핸들링 구현"
             ],
-            results: [
-              '캐시 성능 대폭 향상',
-              '캐시 히트율 개선으로 응답 속도 향상',
-              '메모리 사용량 최적화'
+            "results": [
+              "중복 인덱스 생성 충돌 제거로 서버 기동 안정성 확보",
+              "수평 확장 환경에서도 초기화 로직의 단일 실행 보장",
+              "배포/스케일 아웃 시 장애 없이 일관된 데이터 수집 파이프라인 유지"
             ],
-            images: [
+            "images": [
               {
-                src: '/troubleshootingImage/troubleshooting5-1.png',
-                caption: 'Redis Cluster 구성도',
-                width: 'w-full'
-              },
-              {
-                src: '/troubleshootingImage/troubleshooting5-2.png',
-                caption: '캐시 성능 개선 그래프',
-                width: 'w-3/4'
-              }
-            ]
-          },
-          {
-            title: 'WebSocket 동시 접속 처리 문제',
-            problem: 'WebSocket 연결 풀링으로 동시 접속자 처리 능력을 개선했습니다.',
-            details: [
-              '대량 동시 접속 시 서버 리소스 부족',
-              'WebSocket 연결 관리의 복잡성',
-              '연결 끊김 시 재연결 로직의 불안정성'
-            ],
-            solutions: [
-              'WebSocket 연결 풀링으로 동시 접속자 처리 능력을 개선',
-              '연결 상태 모니터링 및 자동 재연결 로직 구현',
-              '부하 분산을 위한 로드 밸런싱 설정'
-            ],
-            results: [
-              '동시 접속자 처리 능력 대폭 개선',
-              '연결 안정성 향상',
-              '실시간 통신 성능 최적화'
-            ],
-            images: [
-              {
-                src: '/troubleshootingImage/troubleshooting6-1.png',
-                caption: 'WebSocket 연결 풀 구성',
-                width: 'w-full'
-              },
-              {
-                src: '/troubleshootingImage/troubleshooting6-2.png',
-                caption: '동시 접속자 처리 성능',
-                width: 'w-4/5'
+                "src": "/troubleshootingImage/troubleshooting6-1.png",
+                "caption": "Redis 기반 분산 Lock 처리 흐름도",
+                "width": "w-4/5"
               }
             ]
           }
@@ -315,7 +280,8 @@ const Projects = () => {
         learnings: [
           '메시징 큐 시스템 설계 및 구현',
           '실시간 데이터 처리 및 동기화',
-          '마이크로서비스 아키텍처 설계'
+          '마이크로서비스 아키텍처 설계',
+          '수평 확장 환경에서의 분산 락 설계와 Idempotency 확보'
         ]
       }
     },
@@ -345,103 +311,38 @@ const Projects = () => {
         ],
         troubleshooting: [
           {
-            title: 'Cassandra 대용량 데이터 처리 문제',
-            problem: 'Cassandra 파티셔닝 전략을 최적화하여 대용량 데이터 처리 성능을 향상시켰습니다.',
+            title: 'WebClient + Bulk Insert를 활용한 데이터 처리 최적화',
+            problem: '실시간 가상 화폐 시세 API 호출 및 거래 데이터 저장 시 처리 속도와 안정성 문제가 발생했습니다.',
             details: [
-              '대용량 거래 데이터로 인한 파티션 불균형',
-              '쿼리 성능 저하 및 응답 지연',
-              '데이터 분산 저장 시 일관성 문제'
+              '매 시세 요청마다 DB에 개별 저장 시 처리 속도가 느리고 동시 요청 증가 시 서버 과부하 발생',
+              '대량 거래 데이터 저장 시 INSERT 쿼리 반복 호출로 성능 저하',
+              'WebClient 호출 과정에서 타임아웃 및 실패 시 재시도 로직 미비로 일부 데이터 누락 가능'
             ],
             solutions: [
-              'Cassandra 파티셔닝 전략을 최적화하여 대용량 데이터 처리 성능을 향상',
-              '적절한 파티션 키 설계로 데이터 분산 최적화',
-              '읽기 성능 향상을 위한 복제 전략 구현'
+              'Spring WebClient를 활용한 비동기 API 호출로 시세 데이터 수집 속도 개선',
+              '거래 데이터는 Bulk Insert 방식으로 일괄 저장하여 DB 부하 최소화',
+              'WebClient 재시도(retry) 및 Timeout 설정으로 외부 API 호출 안정성 확보',
+              'Bulk Insert 실패 시 재시도 로직 구현으로 데이터 유실 방지'
             ],
             results: [
-              '대용량 데이터 처리 성능 대폭 향상',
-              '쿼리 응답 속도 개선',
-              '데이터 일관성 확보'
+              '실시간 시세 데이터 수집 속도 대폭 향상',
+              '대량 거래 데이터 저장 시 DB 부하 최소화 및 처리 안정성 확보',
+              '외부 API 장애 상황에도 시스템이 안정적으로 동작',
+              '전체 시스템 응답 속도 개선 및 사용자 경험 향상'
             ],
             images: [
               {
                 src: '/troubleshootingImage/troubleshooting7-1.png',
-                caption: 'Cassandra 파티셔닝 전략',
+                caption: 'WebClient와 Bulk Insert를 활용한 실시간 데이터 처리 흐름도',
                 width: 'w-full'
-              },
-              {
-                src: '/troubleshootingImage/troubleshooting7-2.png',
-                caption: '데이터 처리 성능 개선 결과',
-                width: 'w-3/4'
               }
             ]
-          },
-          {
-            title: 'Redis 실시간 시세 업데이트 지연',
-            problem: 'Redis Pub/Sub을 활용하여 실시간 시세 업데이트 지연 문제를 해결했습니다.',
-            details: [
-              '실시간 시세 데이터 업데이트 지연',
-              '대량 데이터 전송 시 네트워크 병목',
-              '시세 데이터 일관성 보장의 어려움'
-            ],
-            solutions: [
-              'Redis Pub/Sub을 활용하여 실시간 시세 업데이트 지연 문제를 해결',
-              '메시지 큐를 통한 비동기 데이터 처리',
-              '데이터 버전 관리로 일관성 보장'
-            ],
-            results: [
-              '실시간 시세 업데이트 지연 문제 해결',
-              '시세 데이터 일관성 확보',
-              '사용자 경험 향상'
-            ],
-            images: [
-              {
-                src: '/troubleshootingImage/troubleshooting8-1.png',
-                caption: 'Redis Pub/Sub 구성도',
-                width: 'w-full'
-              },
-              {
-                src: '/troubleshootingImage/troubleshooting8-2.png',
-                caption: '실시간 시세 업데이트 성능',
-                width: 'w-4/5'
-              }
-            ]
-          },
-          {
-            title: '트래픽 증가에 따른 서버 확장 문제',
-            problem: 'AWS Auto Scaling을 통해 트래픽 증가에 따른 서버 확장을 자동화했습니다.',
-            details: [
-              '트래픽 증가 시 서버 리소스 부족',
-              '수동 서버 확장의 복잡성과 지연',
-              '비용 효율적인 리소스 관리의 어려움'
-            ],
-            solutions: [
-              'AWS Auto Scaling을 통해 트래픽 증가에 따른 서버 확장을 자동화',
-              'CloudWatch를 통한 모니터링 및 알림 설정',
-              '비용 최적화를 위한 스케일링 정책 수립'
-            ],
-            results: [
-              '자동 서버 확장으로 안정적인 서비스 운영',
-              '비용 효율적인 리소스 관리',
-              '트래픽 증가에 따른 자동 대응'
-            ],
-            images: [
-              {
-                src: '/troubleshootingImage/troubleshooting9-1.png',
-                caption: 'AWS Auto Scaling 설정',
-                width: 'w-full'
-              },
-              {
-                src: '/troubleshootingImage/troubleshooting9-2.png',
-                caption: '트래픽에 따른 자동 확장 모니터링',
-                width: 'w-3/4'
-              }
-            ]
-          }
+          }          
         ],
         learnings: [
           '실시간 데이터 처리 시스템 설계',
           '대용량 데이터베이스 최적화',
-          '클라우드 환경에서의 서비스 운영'
+          'gcp 클라우드 환경에서의 서비스 운영'
         ]
       }
     }
