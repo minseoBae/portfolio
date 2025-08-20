@@ -146,12 +146,12 @@ const Projects = () => {
               {
                 src: '/troubleshootingImage/troubleshooting3-1.png',
                 caption: 'Cosine Similarity 키워드 추출 결과 : 검색 키워드 : 부동산, 소요 시간 약 8분',
-                width: 'w-full'
+                width: 'w-4/5'
               },
               {
                 src: '/troubleshootingImage/troubleshooting3-2.png',
-                caption: 'KNN 알고리즘 키워드 추출 결과 : 검색 키워드 : 부동산, k = 40, numCandidates= 300 소요 시간 약 3분',
-                width: 'w-full'
+                caption: 'KNN 알고리즘 키워드 추출 결과 : 검색 키워드 : 부동산, k = 40, numCandidates= 100 소요 시간 약 3분',
+                width: 'w-4/5'
               }
             ]
           },
@@ -181,11 +181,6 @@ const Projects = () => {
                 src: '/troubleshootingImage/troubleshooting4-1.png',
                 caption: 'Spring Batch 처리 구조',
                 width: 'w-full'
-              },
-              {
-                src: '/troubleshootingImage/troubleshooting4-2.png',
-                caption: '배치 처리 성능 개선 결과',
-                width: 'w-3/4'
               }
             ]
           }
@@ -207,12 +202,12 @@ const Projects = () => {
       date: '2025.05.09~2025.06.04',
       team: '4명(Backend 4명)',
       details: {
-        overview: '전국의 영화관 상영 정보를 통합하여 사용자가 편리하게 영화를 찾을 수 있는 서비스입니다. 실시간 데이터 동기화와 메시징 큐를 활용한 안정적인 시스템을 구축했습니다.',
+        overview: '전국의 영화관 상영 정보를 통합하여 사용자가 편리하게 영화에 기반한 영화관 정보를 찾을 수 있는 서비스입니다. 실시간 데이터 동기화와 메시징 큐를 활용한 안정적인 시스템을 구축했습니다.',
         idea: '영화를 보려고 할 때 여러 영화관 사이트를 번갈아가며 확인해야 하는 불편함을 겪었습니다. 모든 영화관의 상영 정보를 한 곳에서 확인할 수 있다면 사용자들이 훨씬 편리할 것이라 생각해서 시작했습니다.',
         architectureImage: '/architectureImage/architecture2.png',
         features: [
           '전국 영화관 상영 정보 통합 검색',
-          '실시간 좌석 예약 및 알림',
+          '영화나 지역, 영화관, 시간을 기반으로 실시간 좌석 정보 제공',
           'WebSocket을 통한 실시간 통신',
           'Kafka와 RabbitMQ를 활용한 메시징 시스템',
           'OAuth 2.0 기반 소셜 로그인'
@@ -224,33 +219,33 @@ const Projects = () => {
         ],
         troubleshooting: [
           {
-            title: 'Kafka 메시지 중복 처리 문제',
-            problem: 'Kafka Consumer Group을 활용하여 메시지 중복 처리 문제를 해결했습니다.',
-            details: [
-              '동일한 메시지가 여러 번 처리되는 문제 발생',
-              'Consumer Group 설정 미흡으로 인한 메시지 손실',
-              '파티션 재배치 시 메시지 순서 보장의 어려움'
+            "title": "실시간 채팅 로그 저장 시 발생하는 데이터 공백 문제 해결",
+            "problem": "실시간으로 Kafka에서 Elasticsearch로 로그를 개별 저장 시 과부하가 발생하여, 5초 간격으로 Bulk 저장을 도입했으나 이로 인해 실시간 데이터 조회에 공백이 생기는 문제가 발생했습니다.",
+            "details": [
+              "매 채팅마다 Elasticsearch의 save API를 호출하자 시스템에 과부하가 걸려 로그 저장이 누락되는 현상 발생",
+              "이를 해결하기 위해 5초간 로그를 모아 Bulk API로 일괄 저장하는 방식으로 변경",
+              "그러나 이 5초의 데이터 수집 시간 동안 사용자가 채팅 내역을 조회할 경우, 아직 저장되지 않은 최신 로그가 보이지 않는 '데이터 공백' 문제 발생"
             ],
-            solutions: [
-              'Kafka Consumer Group을 활용하여 메시지 중복 처리 문제를 해결',
-              '적절한 파티션 수 설정으로 메시지 순서 보장',
-              '메시지 처리 상태 추적을 위한 오프셋 관리 구현'
+            "solutions": [
+              "5초 간격의 Bulk 저장은 유지하여 Elasticsearch의 부하를 최소화",
+              "새로운 채팅 로그가 발생하면, Elasticsearch에 저장되기 전 Redis에 즉시 임시 저장(캐싱)",
+              "사용자가 채팅 내역을 요청할 때, Elasticsearch의 데이터와 Redis에 캐시된 최신 데이터를 조합하여 5초의 공백 없는 실시간 로그를 제공"
             ],
-            results: [
-              '메시지 중복 처리 문제 완전 해결',
-              '메시지 순서 보장으로 데이터 일관성 확보',
-              '안정적인 메시징 시스템 구축'
+            "results": [
+              "Elasticsearch의 과부하 문제를 해결하여 안정적인 로그 저장 시스템 구축",
+              "Redis 캐시를 통해 데이터 공백을 완벽히 메꿔 실시간 채팅 로그 조회 기능 구현",
+              "데이터의 영속성(Elasticsearch)과 실시간성(Redis)을 모두 확보하여 사용자 경험 개선"
             ],
-            images: [
+            "images": [
               {
-                src: '/troubleshootingImage/troubleshooting4-1.png',
-                caption: 'Kafka Consumer Group 설정',
-                width: 'w-full'
+                "src": "/troubleshootingImage/troubleshooting5-1.png",
+                "caption": "Redis 캐시를 도입한 실시간 로그 처리 아키텍처",
+                "width": "w-full"
               },
               {
-                src: '/troubleshootingImage/troubleshooting4-2.png',
-                caption: '메시지 처리 상태 모니터링',
-                width: 'w-4/5'
+                "src": "/troubleshootingImage/your-data-flow-chart.png",
+                "caption": "사용자 요청 시 데이터 조합 흐름도",
+                "width": "w-4/5"
               }
             ]
           },

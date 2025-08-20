@@ -23,7 +23,8 @@ const Footer = () => {
               Portfolio
             </h3>
             <p className="text-gray-400 max-w-md mx-auto">
-              프론트엔드 개발에 대한 열정과 사용자 경험을 향상시키는 것에 대한 깊은 관심을 가지고 있습니다.
+              백엔드 개발에 대한 열정과 여러 API 서비스를 활용한
+              <br></br>페이지 구축에 대한 깊은 관심을 가지고 있습니다.
             </p>
           </div>
 
@@ -74,10 +75,10 @@ const Footer = () => {
             <div>
               <h4 className="text-lg font-semibold mb-4">기술 스택</h4>
               <ul className="space-y-2">
-                <li className="text-gray-400">React & Next.js</li>
-                <li className="text-gray-400">TypeScript</li>
-                <li className="text-gray-400">TailwindCSS</li>
-                <li className="text-gray-400">Node.js</li>
+                <li className="text-gray-400">Java</li>
+                <li className="text-gray-400">Spring Boot</li>
+                <li className="text-gray-400">Git/Slack</li>
+                <li className="text-gray-400">Docker/AWS</li>
               </ul>
             </div>
 
@@ -96,11 +97,11 @@ const Footer = () => {
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="flex items-center space-x-2 mb-4 md:mb-0">
                 <span className="text-gray-400">
-                  © 2024 Portfolio. Made with
+                  © 2025 Portfolio. Made with
                 </span>
                 <Heart size={16} className="text-red-500" />
                 <span className="text-gray-400">
-                  by Frontend Developer
+                  by Backend Developer
                 </span>
               </div>
 
