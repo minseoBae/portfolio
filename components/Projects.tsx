@@ -372,7 +372,7 @@ const Projects = () => {
             프로젝트
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            다양한 기술 스택을 활용하여 개발한 프로젝트들입니다.
+            상세 내용을 통해 프로젝트의 기술적 구현과 성과를 확인할 수 있습니다.
           </p>
         </div>
 
@@ -436,13 +436,6 @@ const Projects = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* View More Button */}
-        <div className="text-center mt-12">
-          <button className="btn-primary">
-            더 많은 프로젝트 보기
-          </button>
         </div>
       </div>
 
