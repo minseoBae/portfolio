@@ -12,7 +12,7 @@ const Projects = () => {
     {
       title: '트렌드 기반 상호명 추천 웹사이트(상추)',
       description: '사용자의 업종에 맞는 트렌디한 가게 이름을 제안해주는 웹사이트',
-      image: '/api/placeholder/400/250',
+      image: '/projectImage/project1.png',
       technologies: ['Spring', 'MySQL', 'Elasticsearch', 'Kibana', 'Docker & Docker Compose', 'Nginx', 'React', 'JavaScript', 'Java', 'Python'],
       github: 'https://github.com/BESP-LLL3',
       date: '2025.04.10~2025.05.08',
@@ -196,7 +196,8 @@ const Projects = () => {
     {
       title: '맞춤형 영화관 찾기 서비스(CineFinder)',
       description: '전국의 상영 정보를 한 눈에 비교하고 검색할 수 있는 통합 영화 정보 서비스',
-      image: '/api/placeholder/400/250',
+      image: '/projectImage/project2.png',
+      deploy: 'https://cinefinder.kro.kr/',
       technologies: ['Spring Boot(+JPA, Security)', 'MySQL', 'Elasticsearch', 'Redis', 'Kafka', 'RabbitMQ', 
         'WebSocket', 'JWT', 'OAuth 2.0', 'RESTful API', 'Git', 'Docker', 'Nginx', 'React', 'JavaScript'],
       github: 'https://github.com/BESP-CineFinder',
@@ -289,7 +290,7 @@ const Projects = () => {
     {
       title: '가상 화폐 거래 체험(KMBBJ)',
       description: '실제 돈이 아닌 가상의 자산을 사용하여 코인을 사고팔고, 시장의 변동성을 체험할 수 있습니다. 이를 통해 사용자는 실제 거래의 복잡성과 위험을 이해하고, 전략을 개발하며, 친구들과 경쟁할 수 있습니다.',
-      image: '/api/placeholder/400/250',
+      image: '/projectImage/project3.png',
       technologies: ['Java', 'Spring Boot', 'PostgreSQL', 'REDIS', 'Cassandra', 'JPA', 'Docker', 'Jenkins', 'AWS', 'GCP'],
       github: 'https://github.com/KMBBJ/KMBBJ_BACKEND',
       date: '2024.08.01~2024.12.12',
@@ -385,11 +386,22 @@ const Projects = () => {
               onClick={() => handleProjectClick(index)}
             >
               {/* Project Image */}
-              <div className="relative h-48 bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
-                <div className="text-primary-600 text-4xl font-bold">
-                  {project.title.split(' ')[0]}
+              {project.image ? (
+                <div className="relative h-48">
+                  <img
+                    src={`${basePath}${project.image}`}
+                    alt={`${project.title} 대표 이미지`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
-              </div>
+              ) : (
+                <div className="relative h-48 bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
+                  <div className="text-primary-600 text-4xl font-bold">
+                    {project.title.split(' ')[0]}
+                  </div>
+                </div>
+              )}
 
               {/* Project Content */}
               <div className="p-6">
@@ -638,11 +650,24 @@ const Projects = () => {
 
               {/* Project Links */}
               <div className="flex space-x-4">
+                {projects[selectedProject].deploy && (
+                  <a
+                    href={(projects[selectedProject] as any).deploy}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors duration-200"
+                    aria-label="배포 사이트 열기"
+                  >
+                    <ExternalLink size={20} />
+                    <span>배포 사이트</span>
+                  </a>
+                )}
                 <a
                   href={projects[selectedProject].github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200"
+                  aria-label="GitHub 저장소 열기"
                 >
                   <Github size={20} />
                   <span>GitHub 저장소</span>
