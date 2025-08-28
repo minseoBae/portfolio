@@ -606,7 +606,7 @@ const Projects = () => {
                               <p className="text-sm text-gray-500 mt-2 italic whitespace-pre-line">
                                 {image.caption}
                               </p>
-                              {image.showArrow && (
+                              {('showArrow' in image) && (image as any).showArrow && (
                                 <div className="flex justify-center mt-2">
                                   <ArrowRight size={20} className="text-primary-600 rotate-90" />
                                 </div>
