@@ -6,6 +6,7 @@ import { useState } from 'react'
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
   const projects = [
     {
@@ -498,7 +499,7 @@ const Projects = () => {
               {/* Architecture */}
               <div className="mb-8">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">프로젝트 구조</h3>
-                <img src={projects[selectedProject].details.architectureImage} alt="Architecture" className="w-full h-auto rounded-lg" />
+                <img src={`${basePath}${projects[selectedProject].details.architectureImage}`} alt="Architecture" className="w-full h-auto rounded-lg" />
               </div>
 
               {/* Features */}
@@ -586,7 +587,7 @@ const Projects = () => {
                           {trouble.images.map((image, imageIndex) => (
                             <div key={imageIndex} className="text-center">
                               <img 
-                                src={image.src} 
+                                src={`${basePath}${image.src}`} 
                                 alt={image.caption}
                                 className={`${image.width} h-auto rounded-lg border border-gray-200 mx-auto`}
                               />

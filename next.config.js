@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Next.js 14에서는 appDir이 기본값이므로 제거
+  reactStrictMode: true,
+  output: 'export', // next export 사용 (정적 배포)
+  // 커스텀 도메인(minseobae.dev)에서 루트로 서빙되므로 basePath/assetPrefix 불필요
+  images: {
+    unoptimized: true,
+  },
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig

@@ -1,35 +1,50 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
-  "private": true,
+  "description": "My personal portfolio",
+  "author": "minseoBae",
+  "license": "MIT",
+  "homepage": "https://minseobae.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/minseobae/portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/minseobae/portfolio/issues",
+    "email": "baejjae8218@gmail.com"
+  },
+  "keywords": [
+    "portfolio",
+    "minseoBae"
+  ],
+  "main": "index.js",
+  "module": "index.js",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "rimraf out && next build",
     "start": "next start",
-    "lint": "next lint"
+    "predeploy": "npm run build",
+    "deploy": "node -e \"require('fs').writeFileSync('out/.nojekyll','')\" && gh-pages -d out --dotfiles",
+    "deploy:domain": "npm run build && node -e \"require('fs').writeFileSync('out/.nojekyll','')\" && node -e \"require('fs').writeFileSync('out/CNAME','minseobae.dev')\" && gh-pages -d out --dotfiles"
   },
   "dependencies": {
+    "lucide-react": "^0.294.0",
     "next": "^14.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "lucide-react": "^0.294.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "rimraf": "^5.0.5",
     "@types/node": "^20.0.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.0.0",
     "eslint-config-next": "^14.0.0",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5",
     "typescript": "^5.0.0"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

@@ -20,6 +20,9 @@ const About = () => {
     }
   ]
 
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+  const profileSrc = `${basePath}/profileImage.png`
+
   return (
     <section id="about" className="section-padding bg-white">
       <div className="container-max">
@@ -38,7 +41,7 @@ const About = () => {
             <div className="relative">
               <div className="w-80 h-80 bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl overflow-hidden shadow-lg">
                 <Image
-                  src="/profileImage.png"
+                  src={profileSrc}
                   alt="배민서 프로필 사진"
                   width={320}
                   height={320}
