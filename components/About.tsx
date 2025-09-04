@@ -24,13 +24,13 @@ const About = () => {
   const profileSrc = `${basePath}/profileImage.png`
 
   return (
-    <section id="about" className="section-padding bg-white">
+    <section id="about" className="section-padding bg-white dark:bg-gray-950">
       <div className="container-max">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
             저에 대해
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             늘 배우고 도전하는 자세로 성장하고 있는 신입 개발자 배민서입니다.
           </p>
         </div>
@@ -57,10 +57,10 @@ const About = () => {
 
           {/* About Text */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
               개발자로서의 성장 방식
             </h3>
-            <div className="space-y-4 text-gray-600">
+            <div className="space-y-4 text-gray-600 dark:text-gray-300">
               <p>
                 저는 해보고 싶은 건 직접 해보며 배우는 개발자입니다. 항상 "이 시스템은 내가 만든다면 어떻게 구현할까?"라는 
                 고민을 바탕으로, 필요하다고 느낀 기능이나 아이디어는 직접 개발해보며 구조를 이해하고 실력을 키워왔습니다.
@@ -79,21 +79,21 @@ const About = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          <div className="text-center p-6 bg-primary-50 rounded-lg">
+          <div className="text-center p-6 bg-primary-50 dark:bg-gray-900 rounded-lg">
             <div className="text-3xl font-bold text-primary-600 mb-2">직접</div>
-            <div className="text-gray-600">구현하는</div>
+            <div className="text-gray-600 dark:text-gray-300">구현하는</div>
           </div>
-          <div className="text-center p-6 bg-primary-50 rounded-lg">
+          <div className="text-center p-6 bg-primary-50 dark:bg-gray-900 rounded-lg">
             <div className="text-3xl font-bold text-primary-600 mb-2">빠른</div>
-            <div className="text-gray-600">학습력</div>
+            <div className="text-gray-600 dark:text-gray-300">학습력</div>
           </div>
-          <div className="text-center p-6 bg-primary-50 rounded-lg">
+          <div className="text-center p-6 bg-primary-50 dark:bg-gray-900 rounded-lg">
             <div className="text-3xl font-bold text-primary-600 mb-2">함께</div>
-            <div className="text-gray-600">성장하는</div>
+            <div className="text-gray-600 dark:text-gray-300">성장하는</div>
           </div>
-          <div className="text-center p-6 bg-primary-50 rounded-lg">
+          <div className="text-center p-6 bg-primary-50 dark:bg-gray-900 rounded-lg">
             <div className="text-3xl font-bold text-primary-600 mb-2">도전</div>
-            <div className="text-gray-600">정신</div>
+            <div className="text-gray-600 dark:text-gray-300">정신</div>
           </div>
         </div>
 
@@ -101,13 +101,13 @@ const About = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <div key={index} className="text-center p-6">
-              <div className="w-16 h-16 mx-auto bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mb-4">
+              <div className="w-16 h-16 mx-auto bg-primary-100 dark:bg-gray-900 rounded-full flex items-center justify-center text-primary-600 mb-4">
                 {feature.icon}
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">
+              <h4 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
                 {feature.title}
               </h4>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-300">
                 {feature.description}
               </p>
             </div>

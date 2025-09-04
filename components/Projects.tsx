@@ -367,13 +367,13 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="section-padding bg-white">
+    <section id="projects" className="section-padding bg-white dark:bg-gray-950">
       <div className="container-max">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
             프로젝트
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             상세 내용을 통해 프로젝트의 기술적 구현과 성과를 확인할 수 있습니다.
           </p>
         </div>
@@ -382,7 +382,7 @@ const Projects = () => {
           {projects.map((project, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+              className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
               onClick={() => handleProjectClick(index)}
             >
               {/* Project Image */}
@@ -405,15 +405,15 @@ const Projects = () => {
 
               {/* Project Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 mb-4 line-clamp-3">
+                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
                   {project.description}
                 </p>
 
                 {/* Project Meta */}
-                <div className="flex items-center space-x-4 mb-4 text-sm text-gray-500">
+                <div className="flex items-center space-x-4 mb-4 text-sm text-gray-500 dark:text-gray-400">
                   <div className="flex items-center space-x-1">
                     <Calendar size={16} />
                     <span>{project.date}</span>

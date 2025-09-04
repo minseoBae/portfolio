@@ -14,7 +14,7 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 text-white dark:bg-black">
       <div className="container-max section-padding">
         <div className="text-center">
           {/* Main Footer Content */}

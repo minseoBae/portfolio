@@ -1,10 +1,36 @@
 'use client'
 
-import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { Menu, X, Moon, Sun } from 'lucide-react'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isDark, setIsDark] = useState(false)
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme')
+    if (saved === 'dark') {
+      document.documentElement.classList.add('dark')
+      setIsDark(true)
+      return
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark')
+      setIsDark(true)
+    }
+  }, [])
+
+  const handleToggleTheme = () => {
+    const next = !isDark
+    setIsDark(next)
+    if (next) {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('theme', 'dark')
+      return
+    }
+    document.documentElement.classList.remove('dark')
+    localStorage.setItem('theme', 'light')
+  }
 
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -32,7 +58,7 @@ const Header = () => {
   ]
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-b border-gray-200 z-50">
+    <header className="fixed top-0 left-0 right-0 bg-white/90 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 z-50">
       <div className="container-max px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -46,19 +72,26 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className="text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium"
+                className="text-gray-700 dark:text-gray-200 hover:text-primary-600 transition-colors duration-200 font-medium"
                 aria-label={`${item.label} 섹션으로 이동`}
               >
                 {item.label}
               </button>
             ))}
+            <button
+              onClick={handleToggleTheme}
+              className="p-2 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="테마 토글"
+            >
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
           <button
             onClick={handleToggleMenu}
             onKeyDown={handleKeyDown}
-            className="md:hidden p-2 text-gray-700 hover:text-primary-600 transition-colors duration-200"
+            className="md:hidden p-2 text-gray-700 dark:text-gray-200 hover:text-primary-600 transition-colors duration-200"
             aria-label={isMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
             aria-expanded={isMenuOpen}
           >
@@ -68,18 +101,26 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 border-t border-gray-200">
+          <nav className="md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-800">
             <div className="flex flex-col space-y-4 pt-4">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className="text-left text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium py-2"
+                  className="text-left text-gray-700 dark:text-gray-200 hover:text-primary-600 transition-colors duration-200 font-medium py-2"
                   aria-label={`${item.label} 섹션으로 이동`}
                 >
                   {item.label}
                 </button>
               ))}
+              <button
+                onClick={handleToggleTheme}
+                className="text-left flex items-center gap-2 text-gray-700 dark:text-gray-200 hover:text-primary-600 transition-colors duration-200 font-medium py-2"
+                aria-label="테마 토글"
+              >
+                {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                <span>테마 전환</span>
+              </button>
             </div>
           </nav>
         )}

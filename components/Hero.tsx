@@ -35,7 +35,7 @@ const Hero = () => {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-primary-50 to-white">
+    <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-primary-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="container-max section-padding text-center">
         <div className="max-w-4xl mx-auto">
           {/* Profile Image */}
@@ -46,11 +46,11 @@ const Hero = () => {
           </div>
 
           {/* Main Content */}
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6">
             안녕하세요, <span className="text-primary-600">신입 백엔드 개발자 배민서</span>입니다
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
           새로운 기술에 대한 도전을 두려워하지 않고, 함께 성장하는 커뮤니케이션 중심의 개발자입니다.
           </p>
 

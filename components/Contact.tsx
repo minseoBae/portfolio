@@ -98,13 +98,13 @@ const Contact = () => {
   ]
 
   return (
-    <section id="contact" className="section-padding bg-gray-50">
+    <section id="contact" className="section-padding bg-gray-50 dark:bg-gray-950">
       <div className="container-max">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
             연락처
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             프로젝트나 협업에 대해 이야기하고 싶으시다면 언제든 연락주세요.
           </p>
         </div>
@@ -112,7 +112,7 @@ const Contact = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8">
               연락 정보
             </h3>
             
@@ -121,17 +121,17 @@ const Contact = () => {
                 <a
                   key={index}
                   href={info.link}
-                  className="flex items-center space-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+                  className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
                   aria-label={`${info.title}: ${info.value}`}
                 >
                   <div className="text-primary-600">
                     {info.icon}
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">
+                    <h4 className="font-semibold text-gray-900 dark:text-gray-100">
                       {info.title}
                     </h4>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-gray-300">
                       {info.value}
                     </p>
                   </div>
@@ -141,7 +141,7 @@ const Contact = () => {
 
             {/* Social Links */}
             <div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
                 소셜 미디어
               </h4>
               <div className="flex space-x-4">
@@ -151,7 +151,7 @@ const Contact = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-gray-600 ${social.color}`}
+                    className={`p-3 bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-gray-600 dark:text-gray-300 ${social.color}`}
                     aria-label={`${social.name} 프로필 보기`}
                   >
                     {social.icon}
