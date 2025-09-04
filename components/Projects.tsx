@@ -2,6 +2,7 @@
 
 import { ExternalLink, Github, Calendar, Users, X, ArrowRight, Volume } from 'lucide-react'
 import { useState } from 'react'
+import MotionDiv, { MotionPresence } from './Motion'
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
@@ -380,9 +381,13 @@ const Projects = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <div 
-              key={index} 
+            <MotionDiv
+              key={index}
+              layoutId={`project-card-${index}`}
+              whileHover={{ y: -2 }}
+              transition={{ layout: { type: 'spring', stiffness: 420, damping: 34, mass: 0.7 } }}
               className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+              style={{ willChange: 'transform' }}
               onClick={() => handleProjectClick(index)}
             >
               {/* Project Image */}
@@ -447,26 +452,37 @@ const Projects = () => {
                   <ArrowRight size={16} className="ml-1" />
                 </div>
               </div>
-            </div>
+            </MotionDiv>
           ))}
         </div>
       </div>
 
       {/* Project Detail Modal */}
-      {isModalOpen && selectedProject !== null && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
-          onClick={handleCloseModal}
-          onKeyDown={handleKeyDown}
-          tabIndex={0}
-        >
-          <div 
-            className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
+      <MotionPresence mode="sync">
+        {isModalOpen && selectedProject !== null && (
+          <div
+            className="fixed inset-0 z-50"
+            onKeyDown={handleKeyDown}
+            tabIndex={0}
           >
+            <MotionDiv
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.1 }}
+              className="absolute inset-0 bg-black/50"
+              onClick={handleCloseModal}
+            />
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <MotionDiv
+                layoutId={`project-card-${selectedProject}`}
+                transition={{ layout: { type: 'spring', stiffness: 520, damping: 32, mass: 0.6 } }}
+                className="bg-white dark:bg-gray-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
             {/* Modal Header */}
-            <div className="flex justify-between items-center p-6 border-b">
-              <h2 className="text-2xl font-bold text-gray-900">
+            <div className="sticky top-0 z-10 flex justify-between items-center p-6 border-b bg-white/90 dark:bg-gray-900/90 backdrop-blur supports-[backdrop-filter]:bg-white/70">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                 {projects[selectedProject].title}
               </h2>
               <button
@@ -479,11 +495,11 @@ const Projects = () => {
             </div>
 
             {/* Modal Content */}
-            <div className="p-6">
+            <div className="p-6 text-gray-900 dark:text-white">
               {/* Project Overview */}
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">프로젝트 개요</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">프로젝트 개요</h3>
+                <p className="text-gray-600 dark:text-white leading-relaxed">
                   {projects[selectedProject].details.overview}
                 </p>
               </div>
@@ -492,36 +508,36 @@ const Projects = () => {
               <div className="grid md:grid-cols-2 gap-6 mb-8">
                 <div className="flex items-center space-x-2">
                   <Calendar size={20} className="text-primary-600" />
-                  <span className="text-gray-700">{projects[selectedProject].date}</span>
+                  <span className="text-gray-700 dark:text-white">{projects[selectedProject].date}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Users size={20} className="text-primary-600" />
-                  <span className="text-gray-700">{projects[selectedProject].team}</span>
+                  <span className="text-gray-700 dark:text-white">{projects[selectedProject].team}</span>
                 </div>
               </div>
 
               {/* Idea */}
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">아이디어 계기</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">아이디어 계기</h3>
+                <p className="text-gray-600 dark:text-white leading-relaxed">
                   {projects[selectedProject].details.idea}
                 </p>
               </div>
 
               {/* Architecture */}
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">프로젝트 구조</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">프로젝트 구조</h3>
                 <img src={`${basePath}${projects[selectedProject].details.architectureImage}`} alt="Architecture" className="w-full h-auto rounded-lg" />
               </div>
 
               {/* Features */}
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">주요 기능</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">주요 기능</h3>
                 <ul className="space-y-2">
                   {projects[selectedProject].details.features.map((feature, index) => (
                     <li key={index} className="flex items-start space-x-2">
                       <ArrowRight size={16} className="text-primary-600 mt-1 flex-shrink-0" />
-                      <span className="text-gray-600">{feature}</span>
+                      <span className="text-gray-600 dark:text-white">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -529,12 +545,12 @@ const Projects = () => {
 
               {/* Challenges */}
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">도전 과제</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">도전 과제</h3>
                 <ul className="space-y-2">
                   {projects[selectedProject].details.challenges.map((challenge, index) => (
                     <li key={index} className="flex items-start space-x-2">
                       <ArrowRight size={16} className="text-primary-600 mt-1 flex-shrink-0" />
-                      <span className="text-gray-600">{challenge}</span>
+                      <span className="text-gray-600 dark:text-white">{challenge}</span>
                     </li>
                   ))}
                 </ul>
@@ -542,16 +558,16 @@ const Projects = () => {
 
               {/* Troubleshooting */}
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">트러블 슈팅</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">트러블 슈팅</h3>
                 <div className="space-y-6">
                   {projects[selectedProject].details.troubleshooting.map((trouble, index) => (
-                    <div key={index} className="border border-gray-200 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900 mb-3">{trouble.title}</h4>
+                    <div key={index} className="border border-gray-200 dark:border-gray-800 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-3">{trouble.title}</h4>
                       
                       {/* Problem */}
                       <div className="mb-4">
                         <h5 className="font-medium text-red-600 mb-2">문제 상황</h5>
-                        <p className="text-gray-600 text-sm">{trouble.problem}</p>
+                        <p className="text-gray-600 dark:text-white text-sm">{trouble.problem}</p>
                       </div>
 
                       {/* Details */}
@@ -561,7 +577,7 @@ const Projects = () => {
                           {trouble.details.map((detail, detailIndex) => (
                             <li key={detailIndex} className="flex items-start space-x-2">
                               <ArrowRight size={14} className="text-orange-600 mt-1 flex-shrink-0" />
-                              <span className="text-gray-600 text-sm">{detail}</span>
+                              <span className="text-gray-600 dark:text-white text-sm">{detail}</span>
                             </li>
                           ))}
                         </ul>
@@ -574,7 +590,7 @@ const Projects = () => {
                           {trouble.solutions.map((solution, solutionIndex) => (
                             <li key={solutionIndex} className="flex items-start space-x-2">
                               <ArrowRight size={14} className="text-green-600 mt-1 flex-shrink-0" />
-                              <span className="text-gray-600 text-sm">{solution}</span>
+                              <span className="text-gray-600 dark:text-white text-sm">{solution}</span>
                             </li>
                           ))}
                         </ul>
@@ -587,7 +603,7 @@ const Projects = () => {
                           {trouble.results.map((result, resultIndex) => (
                             <li key={resultIndex} className="flex items-start space-x-2">
                               <ArrowRight size={14} className="text-blue-600 mt-1 flex-shrink-0" />
-                              <span className="text-gray-600 text-sm">{result}</span>
+                              <span className="text-gray-600 dark:text-white text-sm">{result}</span>
                             </li>
                           ))}
                         </ul>
@@ -603,7 +619,7 @@ const Projects = () => {
                                 alt={image.caption}
                                 className={`${image.width} h-auto rounded-lg border border-gray-200 mx-auto`}
                               />
-                              <p className="text-sm text-gray-500 mt-2 italic whitespace-pre-line">
+                              <p className="text-sm text-gray-500 dark:text-white mt-2 italic whitespace-pre-line">
                                 {image.caption}
                               </p>
                               {('showArrow' in image) && (image as any).showArrow && (
@@ -622,12 +638,12 @@ const Projects = () => {
 
               {/* Learnings */}
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">학습 내용</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">학습 내용</h3>
                 <ul className="space-y-2">
                   {projects[selectedProject].details.learnings.map((learning, index) => (
                     <li key={index} className="flex items-start space-x-2">
                       <ArrowRight size={16} className="text-primary-600 mt-1 flex-shrink-0" />
-                      <span className="text-gray-600">{learning}</span>
+                      <span className="text-gray-600 dark:text-white">{learning}</span>
                     </li>
                   ))}
                 </ul>
@@ -635,7 +651,7 @@ const Projects = () => {
 
               {/* Technologies */}
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">사용 기술</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">사용 기술</h3>
                 <div className="flex flex-wrap gap-2">
                   {projects[selectedProject].technologies.map((tech, techIndex) => (
                     <span
@@ -666,7 +682,7 @@ const Projects = () => {
                   href={projects[selectedProject].github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200"
+                  className="flex items-center space-x-2 bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 border border-transparent dark:border-white"
                   aria-label="GitHub 저장소 열기"
                 >
                   <Github size={20} />
@@ -674,9 +690,11 @@ const Projects = () => {
                 </a>
               </div>
             </div>
+              </MotionDiv>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </MotionPresence>
     </section>
   )
 }

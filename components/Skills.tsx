@@ -1,3 +1,5 @@
+import MotionDiv from './Motion'
+
 const Skills = () => {
   const skillCategories = [
     {
@@ -37,18 +39,31 @@ const Skills = () => {
   return (
     <section id="skills" className="section-padding bg-gray-50 dark:bg-gray-950">
       <div className="container-max">
-        <div className="text-center mb-16">
+        <MotionDiv
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
             기술 스택
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             실제 프로젝트와 학습을 통해 익힌 주요 기술들입니다.
           </p>
-        </div>
+        </MotionDiv>
 
         <div className="grid lg:grid-cols-3 gap-8">
           {skillCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm">
+            <MotionDiv
+              key={categoryIndex}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.35, ease: 'easeOut', delay: categoryIndex * 0.05 }}
+              className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm"
+            >
               <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">
                 {category.category}
               </h3>
@@ -64,15 +79,18 @@ const Skills = () => {
                       </span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2">
-                      <div
-                        className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: `${skill.level}%` }}
+                      <MotionDiv
+                        className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.level}%` }}
+                        viewport={{ once: true, amount: 0.4 }}
+                        transition={{ duration: 0.8, ease: 'easeOut' }}
                       />
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
+            </MotionDiv>
           ))}
         </div>
 
@@ -83,14 +101,18 @@ const Skills = () => {
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {additionalSkills.map((skill, index) => (
-              <div
+              <MotionDiv
                 key={index}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.3, ease: 'easeOut', delay: (index % 6) * 0.03 }}
                 className="bg-white dark:bg-gray-900 rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-shadow duration-200"
               >
                 <span className="text-gray-700 dark:text-gray-300 font-medium text-sm">
                   {skill}
                 </span>
-              </div>
+              </MotionDiv>
             ))}
           </div>
         </div>

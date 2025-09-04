@@ -1,6 +1,7 @@
 'use client'
 
 import { ChevronDown, Github, Linkedin, Mail, BookOpen } from 'lucide-react'
+import MotionDiv from './Motion'
 
 const Hero = () => {
   const handleScrollDown = () => {
@@ -37,12 +38,24 @@ const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-primary-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="container-max section-padding text-center">
-        <div className="max-w-4xl mx-auto">
+        <MotionDiv
+          className="max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        >
           {/* Profile Image */}
           <div className="mb-8">
-            <div className="w-32 h-32 mx-auto bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center text-white text-4xl font-bold mb-4">
+            <MotionDiv
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+              className="w-32 h-32 mx-auto bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center text-white text-4xl font-bold mb-4"
+            >
               Dev
-            </div>
+            </MotionDiv>
           </div>
 
           {/* Main Content */}
@@ -55,7 +68,13 @@ const Hero = () => {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <MotionDiv
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
+          >
             <button
               className="btn-primary"
               onClick={handleViewProjects}
@@ -70,10 +89,16 @@ const Hero = () => {
             >
               이력서 다운로드
             </button>
-          </div>
+          </MotionDiv>
 
           {/* Social Links */}
-          <div className="flex justify-center space-x-6 mb-12">
+          <MotionDiv
+            className="flex justify-center space-x-6 mb-12"
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.15, ease: 'easeOut' }}
+          >
             <a
               href="https://github.com/minseoBae"
               target="_blank"
@@ -108,7 +133,7 @@ const Hero = () => {
             >
               <BookOpen size={24} />
             </a>
-          </div>
+          </MotionDiv>
 
           {/* Scroll Down Indicator */}
           <button
@@ -119,7 +144,7 @@ const Hero = () => {
           >
             <ChevronDown size={32} />
           </button>
-        </div>
+        </MotionDiv>
       </div>
     </section>
   )

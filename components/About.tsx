@@ -1,5 +1,6 @@
 import { User, Code, Heart, Database, Server, Zap, Lightbulb, Users } from 'lucide-react'
 import Image from 'next/image'
+import MotionDiv from './Motion'
 
 const About = () => {
   const features = [
@@ -26,14 +27,20 @@ const About = () => {
   return (
     <section id="about" className="section-padding bg-white dark:bg-gray-950">
       <div className="container-max">
-        <div className="text-center mb-16">
+        <MotionDiv
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
             저에 대해
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             늘 배우고 도전하는 자세로 성장하고 있는 신입 개발자 배민서입니다.
           </p>
-        </div>
+        </MotionDiv>
 
         <div className="grid md:grid-cols-[400px_1fr] gap-8 items-center mb-16">
           {/* Profile Image */}
@@ -56,7 +63,12 @@ const About = () => {
           </div>
 
           {/* About Text */}
-          <div>
+          <MotionDiv
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+          >
             <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
               개발자로서의 성장 방식
             </h3>
@@ -74,33 +86,40 @@ const About = () => {
                 원활한 소통을 통해 팀과 함께 성장하는 것을 중요하게 생각합니다.
               </p>
             </div>
-          </div>
+          </MotionDiv>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          <div className="text-center p-6 bg-primary-50 dark:bg-gray-900 rounded-lg">
-            <div className="text-3xl font-bold text-primary-600 mb-2">직접</div>
-            <div className="text-gray-600 dark:text-gray-300">구현하는</div>
-          </div>
-          <div className="text-center p-6 bg-primary-50 dark:bg-gray-900 rounded-lg">
-            <div className="text-3xl font-bold text-primary-600 mb-2">빠른</div>
-            <div className="text-gray-600 dark:text-gray-300">학습력</div>
-          </div>
-          <div className="text-center p-6 bg-primary-50 dark:bg-gray-900 rounded-lg">
-            <div className="text-3xl font-bold text-primary-600 mb-2">함께</div>
-            <div className="text-gray-600 dark:text-gray-300">성장하는</div>
-          </div>
-          <div className="text-center p-6 bg-primary-50 dark:bg-gray-900 rounded-lg">
-            <div className="text-3xl font-bold text-primary-600 mb-2">도전</div>
-            <div className="text-gray-600 dark:text-gray-300">정신</div>
-          </div>
+          {[0,1,2,3].map((i) => (
+            <MotionDiv
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.35, ease: 'easeOut', delay: i * 0.05 }}
+              className="text-center p-6 bg-primary-50 dark:bg-gray-900 rounded-lg"
+            >
+              {/* static content is above; keep structure consistent */}
+              {i === 0 && (<><div className="text-3xl font-bold text-primary-600 mb-2">직접</div><div className="text-gray-600 dark:text-gray-300">구현하는</div></>)}
+              {i === 1 && (<><div className="text-3xl font-bold text-primary-600 mb-2">빠른</div><div className="text-gray-600 dark:text-gray-300">학습력</div></>)}
+              {i === 2 && (<><div className="text-3xl font-bold text-primary-600 mb-2">함께</div><div className="text-gray-600 dark:text-gray-300">성장하는</div></>)}
+              {i === 3 && (<><div className="text-3xl font-bold text-primary-600 mb-2">도전</div><div className="text-gray-600 dark:text-gray-300">정신</div></>)}
+            </MotionDiv>
+          ))}
         </div>
 
         {/* Features */}
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="text-center p-6">
+            <MotionDiv
+              key={index}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.35, ease: 'easeOut', delay: index * 0.05 }}
+              className="text-center p-6"
+            >
               <div className="w-16 h-16 mx-auto bg-primary-100 dark:bg-gray-900 rounded-full flex items-center justify-center text-primary-600 mb-4">
                 {feature.icon}
               </div>
@@ -110,7 +129,7 @@ const About = () => {
               <p className="text-gray-600 dark:text-gray-300">
                 {feature.description}
               </p>
-            </div>
+            </MotionDiv>
           ))}
         </div>
       </div>
