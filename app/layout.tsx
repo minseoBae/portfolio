@@ -5,8 +5,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: '포트폴리오 | Frontend Developer',
-  description: '프론트엔드 개발자 포트폴리오입니다.',
+  title: '포트폴리오 | Backend Developer',
+  description: '백엔드 개발자 포트폴리오입니다.',
 }
 
 export default function RootLayout({
@@ -21,4 +21,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-} 
+}
