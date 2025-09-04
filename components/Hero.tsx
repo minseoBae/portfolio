@@ -16,6 +16,24 @@ const Hero = () => {
     }
   }
 
+  const handleViewProjects = () => {
+    const projectsSection = document.getElementById('projects')
+    if (!projectsSection) {
+      return
+    }
+    projectsSection.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const handleDownloadResume = () => {
+    const resumePath = '/resume.pdf'
+    const anchor = document.createElement('a')
+    anchor.href = resumePath
+    anchor.download = 'Bae_Minseo_Resume.pdf'
+    document.body.appendChild(anchor)
+    anchor.click()
+    anchor.remove()
+  }
+
   return (
     <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-primary-50 to-white">
       <div className="container-max section-padding text-center">
@@ -38,10 +56,18 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <button className="btn-primary">
+            <button
+              className="btn-primary"
+              onClick={handleViewProjects}
+              aria-label="프로젝트 섹션으로 이동"
+            >
               프로젝트 보기
             </button>
-            <button className="btn-secondary">
+            <button
+              className="btn-secondary"
+              onClick={handleDownloadResume}
+              aria-label="이력서 다운로드"
+            >
               이력서 다운로드
             </button>
           </div>
