@@ -1,14 +1,18 @@
 "use client"
 
+import { useMemo, useState } from "react"
 import MotionDiv from "./Motion"
 import { skillCategories, additionalSkills, type SkillLevel, type Skill } from "@/data/skills"
-import { CheckCircle2, Rocket, BookOpen } from "lucide-react"
+import { Rocket, CheckCircle2, BookOpen } from "lucide-react"
+
+/* =====================
+  Level UI Definition
+===================== */
 
 const levelUI: Record<
   SkillLevel,
   {
     label: string
-    // 색상은 tailwind class로만 (다크모드 포함)
     badge: string
     icon: React.ReactNode
     hint: string
@@ -37,10 +41,22 @@ const levelUI: Record<
   },
 }
 
+const levelRank: Record<SkillLevel, number> = {
+  Production: 0,
+  Project: 1,
+  Learning: 2,
+}
+
+/* =====================
+  Small Components
+===================== */
+
 function LevelBadge({ level }: { level: SkillLevel }) {
   const ui = levelUI[level]
   return (
-    <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold ${ui.badge}`}>
+    <span
+      className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold ${ui.badge}`}
+    >
       {ui.icon}
       {ui.label}
     </span>
@@ -51,7 +67,10 @@ function EvidenceList({ evidence }: { evidence: Skill["evidence"] }) {
   return (
     <ul className="mt-2 space-y-1">
       {evidence.map((e) => (
-        <li key={e} className="text-sm text-gray-600 dark:text-gray-300 flex gap-2">
+        <li
+          key={e}
+          className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed flex gap-2"
+        >
           <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-gray-400 dark:bg-gray-500 flex-shrink-0" />
           <span className="leading-relaxed">{e}</span>
         </li>
@@ -60,7 +79,26 @@ function EvidenceList({ evidence }: { evidence: Skill["evidence"] }) {
   )
 }
 
+/* =====================
+  Main Component
+===================== */
+
 export default function Skills() {
+  const [sortByLevel, setSortByLevel] = useState(false)
+
+  const categories = useMemo(() => {
+    if (!sortByLevel) return skillCategories
+
+    return skillCategories.map((cat) => ({
+      ...cat,
+      skills: [...cat.skills].sort((a, b) => {
+        const diff = levelRank[a.level] - levelRank[b.level]
+        if (diff !== 0) return diff
+        return a.name.localeCompare(b.name)
+      }),
+    }))
+  }, [sortByLevel])
+
   return (
     <section id="skills" className="section-padding bg-gray-50 dark:bg-gray-950">
       <div className="container-max">
@@ -77,35 +115,59 @@ export default function Skills() {
           </h2>
 
           <p className="text-base md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            자기평가 퍼센트 대신 <span className="font-semibold">경험 레벨과 근거</span>로 정리했습니다.
+            퍼센트 대신 <span className="font-semibold">경험 레벨과 근거</span>
+            로 정리했습니다.
           </p>
 
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-            {(["Production", "Project", "Learning"] as SkillLevel[]).map((lvl) => (
+          {/* Legend */}
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+            {(Object.keys(levelUI) as SkillLevel[]).map((lvl) => (
               <div key={lvl} className="flex items-center gap-2">
                 <LevelBadge level={lvl} />
-                <span className="text-xs text-gray-500 dark:text-gray-400">{levelUI[lvl].hint}</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400">
+                  {levelUI[lvl].hint}
+                </span>
               </div>
             ))}
           </div>
+
+          {/* Sort Button */}
+          <div className="mt-5 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setSortByLevel((v) => !v)}
+              aria-pressed={sortByLevel}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold border transition-colors
+                ${
+                  sortByLevel
+                    ? "bg-primary-600 text-white border-primary-600 hover:bg-primary-700"
+                    : "bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+                }`}
+            >
+              {sortByLevel ? "정렬: 경험 레벨 우선" : "정렬: 기본"}
+            </button>
+          </div>
         </MotionDiv>
 
-        {/* Categories */}
+        {/* Skill Categories */}
         <div className="grid lg:grid-cols-3 gap-6 md:gap-8">
-          {skillCategories.map((category, categoryIndex) => (
+          {categories.map((category, categoryIndex) => (
             <MotionDiv
               key={category.category}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.35, ease: "easeOut", delay: categoryIndex * 0.05 }}
+              transition={{
+                duration: 0.35,
+                ease: "easeOut",
+                delay: categoryIndex * 0.05,
+              }}
               className="bg-white dark:bg-gray-900 rounded-2xl p-5 md:p-6 shadow-sm border border-gray-100 dark:border-gray-800"
             >
               <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">
                 {category.category}
               </h3>
 
-              {/* Skills list */}
               <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
                   <MotionDiv
@@ -113,19 +175,25 @@ export default function Skills() {
                     initial={{ opacity: 0, y: 8 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.25, ease: "easeOut", delay: skillIndex * 0.03 }}
+                    transition={{
+                      duration: 0.25,
+                      ease: "easeOut",
+                      delay: skillIndex * 0.03,
+                    }}
                     className="rounded-xl border border-gray-100 dark:border-gray-800 p-4 hover:shadow-sm transition-shadow"
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <p className="text-gray-900 dark:text-gray-100 font-semibold truncate">
-                          {skill.name}
-                        </p>
-                      </div>
+                      <p
+                        title={skill.name}
+                        className="
+                          text-base font-semibold text-gray-900 dark:text-gray-100
+                          leading-snug break-words line-clamp-2
+                        "
+                      >
+                        {skill.name}
+                      </p>
 
-                      <div className="flex-shrink-0">
-                        <LevelBadge level={skill.level} />
-                      </div>
+                      <LevelBadge level={skill.level} />
                     </div>
 
                     <EvidenceList evidence={skill.evidence} />
@@ -145,9 +213,11 @@ export default function Skills() {
             transition={{ duration: 0.35, ease: "easeOut" }}
             className="text-center mb-6 md:mb-8"
           >
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">추가 기술</h3>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+              추가 기술
+            </h3>
             <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">
-              필요한 상황에 맞춰 적용해본 도구/기술들입니다.
+              필요에 따라 적용해본 도구 및 기술입니다.
             </p>
           </MotionDiv>
 
@@ -158,18 +228,19 @@ export default function Skills() {
                 initial={{ opacity: 0, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.25, ease: "easeOut", delay: (index % 6) * 0.02 }}
-                className="bg-white dark:bg-gray-900 rounded-xl p-3 md:p-4 text-center shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100 dark:border-gray-800"
+                transition={{
+                  duration: 0.25,
+                  ease: "easeOut",
+                  delay: (index % 6) * 0.02,
+                }}
+                className="bg-white dark:bg-gray-900 rounded-xl p-3 md:p-4 text-center shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-gray-800"
               >
-                <div className="flex flex-col items-center gap-2">
-                  <span className="text-gray-800 dark:text-gray-100 font-semibold text-sm leading-snug">
-                    {skill.name}
-                  </span>
-
-                  <span className="text-[11px] text-gray-500 dark:text-gray-400">
-                    {levelUI[skill.level].label}
-                  </span>
-                </div>
+                <span className="text-sm font-semibold text-gray-800 dark:text-gray-100 block">
+                  {skill.name}
+                </span>
+                <span className="mt-1 text-[11px] text-gray-500 dark:text-gray-400">
+                  {levelUI[skill.level].label}
+                </span>
               </MotionDiv>
             ))}
           </div>
