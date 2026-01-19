@@ -4,6 +4,8 @@ import { ChevronDown, Github, Linkedin, Mail, BookOpen } from 'lucide-react'
 import MotionDiv from './Motion'
 
 const Hero = () => {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
   const handleScrollDown = () => {
     const aboutSection = document.getElementById('about')
     if (aboutSection) {
@@ -19,14 +21,12 @@ const Hero = () => {
 
   const handleViewProjects = () => {
     const projectsSection = document.getElementById('projects')
-    if (!projectsSection) {
-      return
-    }
+    if (!projectsSection) return
     projectsSection.scrollIntoView({ behavior: 'smooth' })
   }
 
   const handleDownloadResume = () => {
-    const resumePath = '/resume.pdf'
+    const resumePath = `${basePath}/resume.pdf`
     const anchor = document.createElement('a')
     anchor.href = resumePath
     anchor.download = 'Bae_Minseo_Resume.pdf'
@@ -62,9 +62,9 @@ const Hero = () => {
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6">
             안녕하세요, <span className="text-primary-600">신입 백엔드 개발자 배민서</span>입니다
           </h1>
-          
+
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-          새로운 기술에 대한 도전을 두려워하지 않고, 함께 성장하는 커뮤니케이션 중심의 개발자입니다.
+            새로운 기술에 대한 도전을 두려워하지 않고, 함께 성장하는 커뮤니케이션 중심의 개발자입니다.
           </p>
 
           {/* CTA Buttons */}
@@ -124,12 +124,15 @@ const Hero = () => {
             >
               <Mail size={24} />
             </a>
+
+            {/* Notion 링크로 변경 */}
             <a
-              href="https://boat-push.tistory.com/"
+              href="https://electric-note-712.notion.site/285d12b24bbc8087a8e4d204accaee01?source=copy_link"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-primary-600 transition-colors duration-200"
-              aria-label="블로그 보기"
+              aria-label="개발 학습 정리 노션 페이지"
+              title="개발 학습 정리 노션 (CS · 백엔드 · DevOps)"
             >
               <BookOpen size={24} />
             </a>
@@ -150,4 +153,4 @@ const Hero = () => {
   )
 }
 
-export default Hero 
+export default Hero
