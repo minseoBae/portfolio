@@ -21,6 +21,7 @@
   "module": "index.js",
   "scripts": {
     "dev": "next dev",
+    "lint": "next lint",
     "build": "rimraf out && next build",
     "start": "next start",
     "predeploy": "npm run build",
