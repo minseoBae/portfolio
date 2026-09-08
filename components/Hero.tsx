@@ -36,7 +36,7 @@ const Hero = () => {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-primary-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <section className="min-h-screen flex items-center justify-center relative pt-20 bg-gradient-to-br from-primary-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="container-max section-padding text-center">
         <MotionDiv
           className="max-w-4xl mx-auto"
