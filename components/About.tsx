@@ -35,7 +35,7 @@ const About = () => {
   const profileSrc = `${basePath}/profileImage.png`
 
   return (
-    <section id="about" className="section-padding bg-white dark:bg-gray-950">
+    <section id="about" className="section-padding scroll-mt-24 bg-white dark:bg-gray-950">
       <div className="container-max">
         {/* Header */}
         <MotionDiv

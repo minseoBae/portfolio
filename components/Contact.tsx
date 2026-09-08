@@ -92,7 +92,7 @@ const Contact = () => {
   ]
 
   return (
-    <section id="contact" className="section-padding bg-gray-50 dark:bg-gray-950">
+    <section id="contact" className="section-padding scroll-mt-24 bg-gray-50 dark:bg-gray-950">
       <div className="container-max">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">

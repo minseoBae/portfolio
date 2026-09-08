@@ -100,7 +100,7 @@ export default function Skills() {
   }, [sortByLevel])
 
   return (
-    <section id="skills" className="section-padding bg-gray-50 dark:bg-gray-950">
+    <section id="skills" className="section-padding scroll-mt-24 bg-gray-50 dark:bg-gray-950">
       <div className="container-max">
         {/* Header */}
         <MotionDiv

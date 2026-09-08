@@ -11,7 +11,7 @@ const Certifications = () => {
   return (
     <section
       id="certifications"
-      className="section-padding bg-white dark:bg-gray-950"
+      className="section-padding scroll-mt-24 bg-white dark:bg-gray-950"
     >
       <div className="container-max">
         <MotionDiv
