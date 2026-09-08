@@ -10,7 +10,8 @@
 ## 구조
 - `data/projects.ts` — 프로젝트 목록 데이터
 - `data/skills.ts` — 기술 스택 데이터
-- `components/` — `Header`, `Hero`, `About`, `Skills`, `Projects`, `Contact`, `Footer` 등 섹션별 컴포넌트
+- `data/certifications.ts` — 자격증 데이터 (2026-09-09 추가)
+- `components/` — `Header`, `Hero`, `About`, `Skills`, `Certifications`, `Projects`, `Contact`, `Footer` 등 섹션별 컴포넌트
 
 ## 최근 완료 작업 (병합된 PR 순, 최신 우선)
 - **PR #6** (2026-09-08 이전 병합): About 섹션 통계/소개 문구를 근거 기반으로 개편 — 추측성 수치 제거.
@@ -20,9 +21,13 @@
 - **PR #1**: `CLAUDE.md` 프로젝트 가이드라인 문서 추가.
 - 그 외: `skills`/`projects` 섹션 데이터·컴포넌트 분리 리팩토링.
 
-## 현재 상태 (2026-09-08 기준)
+## 현재 상태 (2026-09-09 기준)
 - `main` 브랜치, working tree clean, origin과 동기화됨.
-- 진행 중인 브랜치나 미완료 TODO 없음 — 마지막 작업(About 섹션 개편)까지 전부 병합 완료.
+- **자격증 섹션 신규 추가** (2026-09-09): `data/certifications.ts` + `components/Certifications.tsx`, Header 네비게이션에 "자격증" 추가, `app/page.tsx`에서 Skills와 Projects 사이에 배치.
+  - 등록된 자격증: SQL 개발자(SQLD, 2026-06-19 취득, 2028-06-19까지 유효), 데이터분석 준전문가(ADsP, 2026-06-05 취득, 영구자격), 리눅스마스터 2급(2026-07-03 취득). 발급기관: SQLD/ADsP는 한국데이터산업진흥원, 리눅스마스터는 KAIT 자격검정.
+  - **자격증 번호는 의도적으로 비공개** — 사용자 요청(개인식별정보 노출 방지). `Certification` 인터페이스에 `credentialId?` 필드는 있으나 값은 채우지 않음.
+- `main` 저장소는 브랜치 보호 규칙(GH013)으로 직접 push 불가 — 항상 브랜치 생성 → PR → squash merge로 진행.
+- `.github/workflows/deploy.yml`이 `main` push에 반응해 자동으로 `gh-pages`에 배포됨 (수동 배포 명령 불필요).
 
 ## 로드맵 / 다음 단계 (README 기준, 우선순위 미정)
 - [ ] 다국어 지원 (한국어/영어)
@@ -33,4 +38,5 @@
 - [x] 애니메이션 효과 (Framer Motion)
 
 ## 변경 이력
+- 2026-09-09: 자격증 섹션 추가 (SQLD, ADsP, 리눅스마스터 2급) — `data/certifications.ts`, `components/Certifications.tsx` 신규, Header/page.tsx 반영.
 - 2026-09-08: `docs/` 옵시디언 연동 문서화 시스템 최초 세팅, 기존 git 히스토리 기반으로 현재 상태 정리.
