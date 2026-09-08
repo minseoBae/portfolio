@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, Phone, MapPin, Send, Github, Linkedin, BookOpen } from 'lucide-react'
+import { Mail, MapPin, Send, Github, Linkedin, BookOpen } from 'lucide-react'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -61,12 +61,6 @@ const Contact = () => {
       title: '이메일',
       value: 'baejjae8218@gmail.com',
       link: 'mailto:baejjae8218@gmail.com'
-    },
-    {
-      icon: <Phone className="w-6 h-6" />,
-      title: '전화번호',
-      value: '+82 10-4107-3358',
-      link: 'tel:+821041073358'
     },
     {
       icon: <MapPin className="w-6 h-6" />,
@@ -163,14 +157,14 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8">
               메시지 보내기
             </h3>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                     이름 *
                   </label>
                   <input
@@ -181,13 +175,13 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     disabled={isSubmitting}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed"
                     placeholder="이름을 입력하세요"
                   />
                 </div>
-                
+
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                     이메일 *
                   </label>
                   <input
@@ -198,14 +192,14 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     disabled={isSubmitting}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed"
                     placeholder="이메일을 입력하세요"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   제목 *
                 </label>
                 <input
@@ -216,13 +210,13 @@ const Contact = () => {
                   onChange={handleInputChange}
                   required
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed"
                   placeholder="제목을 입력하세요"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   메시지 *
                 </label>
                 <textarea
@@ -233,23 +227,23 @@ const Contact = () => {
                   required
                   disabled={isSubmitting}
                   rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 resize-none disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed"
                   placeholder="메시지를 입력하세요"
                 />
               </div>
 
               {/* Status Messages */}
               {submitStatus === 'success' && (
-                <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-                  <p className="text-green-800 font-medium">
+                <div className="p-4 bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-lg">
+                  <p className="text-green-800 dark:text-green-300 font-medium">
                     메시지가 성공적으로 전송되었습니다! 곧 답변드리겠습니다.
                   </p>
                 </div>
               )}
 
               {submitStatus === 'error' && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                  <p className="text-red-800 font-medium">
+                <div className="p-4 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-lg">
+                  <p className="text-red-800 dark:text-red-300 font-medium">
                     메시지 전송에 실패했습니다. 잠시 후 다시 시도해주세요.
                   </p>
                 </div>
