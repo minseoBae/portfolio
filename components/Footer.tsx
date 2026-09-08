@@ -86,7 +86,6 @@ const Footer = () => {
               <h4 className="text-lg font-semibold mb-4">연락처</h4>
               <ul className="space-y-2">
                 <li className="text-gray-400">baejjae8218@gmail.com</li>
-                <li className="text-gray-400">+82 10-4107-3358</li>
                 <li className="text-gray-400">서울, 대한민국</li>
               </ul>
             </div>
