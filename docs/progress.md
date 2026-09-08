@@ -38,5 +38,6 @@
 - [x] 애니메이션 효과 (Framer Motion)
 
 ## 변경 이력
+- 2026-09-09: About 섹션 문구를 b33d853(PR #6) 이전의 자연스러운 서술형 톤으로 복원하되, Spring Batch/Redis 근거 문장 1개는 유지 — 사용자가 PR #6 문구를 "어색하다"고 판단해 되돌림. Stats 카드도 원래의 직접/빠른/함께/도전 슬로건으로 복원.
 - 2026-09-09: 자격증 섹션 추가 (SQLD, ADsP, 리눅스마스터 2급) — `data/certifications.ts`, `components/Certifications.tsx` 신규, Header/page.tsx 반영.
 - 2026-09-08: `docs/` 옵시디언 연동 문서화 시스템 최초 세팅, 기존 git 히스토리 기반으로 현재 상태 정리.
