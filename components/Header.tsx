@@ -53,6 +53,7 @@ const Header = () => {
   const navItems = [
     { id: 'about', label: '소개' },
     { id: 'skills', label: '기술스택' },
+    { id: 'certifications', label: '자격증' },
     { id: 'projects', label: '프로젝트' },
     { id: 'contact', label: '연락처' },
   ]
