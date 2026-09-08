@@ -1,47 +1,60 @@
-import { User, Code, Heart, Database, Server, Zap, Lightbulb, Users } from 'lucide-react'
-import Image from 'next/image'
-import MotionDiv from './Motion'
+import { Server, Zap, Lightbulb, Users } from "lucide-react"
+import Image from "next/image"
+import MotionDiv from "./Motion"
 
 const About = () => {
   const features = [
     {
       icon: <Lightbulb className="w-8 h-8" />,
-      title: '직접 해보며 배우는',
-      description: '이론에 그치지 않고 실제로 구현해보며 구조를 이해하고 실력을 키워갑니다.'
+      title: "직접 해보며 배우는",
+      description:
+        "이론에 그치지 않고 구현으로 검증하며 구조를 이해하고 실력을 쌓습니다.",
     },
     {
       icon: <Zap className="w-8 h-8" />,
-      title: '빠른 학습과 실행',
-      description: '새로운 기술에 대한 도전을 두려워하지 않고 빠르게 이해하여 실전에 적용합니다.'
+      title: "빠른 학습과 실행",
+      description:
+        "새로운 기술도 빠르게 파악해 PoC → 적용까지 연결하는 실행력을 지향합니다.",
     },
     {
       icon: <Users className="w-8 h-8" />,
-      title: '함께 성장하는',
-      description: '상대방의 입장을 고려하며 원활한 소통을 통해 팀과 함께 성장합니다.'
-    }
+      title: "함께 성장하는",
+      description:
+        "상대의 의도와 맥락을 존중하며, 소통을 통해 팀 성과를 끌어올립니다.",
+    },
   ]
 
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+  // ✅ 면접관이 바로 이해할 수 있는 "팩트형" Stats
+  const stats = [
+    { value: "3", label: "주요 프로젝트" },
+    { value: "450만+", label: "대용량 데이터 배치 처리" },
+    { value: "Kafka/Redis/ES", label: "실시간·검색 스택" },
+    { value: "GCP + Docker", label: "배포/운영 경험" },
+  ]
+
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""
   const profileSrc = `${basePath}/profileImage.png`
 
   return (
     <section id="about" className="section-padding bg-white dark:bg-gray-950">
       <div className="container-max">
+        {/* Header */}
         <MotionDiv
           className="text-center mb-16"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
             저에 대해
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            늘 배우고 도전하는 자세로 성장하고 있는 신입 개발자 배민서입니다.
+            구현으로 검증하고, 운영 관점까지 확장하며 성장하는 신입 백엔드 개발자 배민서입니다.
           </p>
         </MotionDiv>
 
+        {/* Profile + About */}
         <div className="grid md:grid-cols-[400px_1fr] gap-8 items-center mb-16">
           {/* Profile Image */}
           <div className="flex justify-center md:justify-start">
@@ -67,44 +80,56 @@ const About = () => {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
               개발자로서의 성장 방식
             </h3>
-            <div className="space-y-4 text-gray-600 dark:text-gray-300">
+
+            <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
               <p>
-                저는 해보고 싶은 건 직접 해보며 배우는 개발자입니다. 항상 &ldquo;이 시스템은 내가 만든다면 어떻게 구현할까?&rdquo;라는
-                고민을 바탕으로, 필요하다고 느낀 기능이나 아이디어는 직접 개발해보며 구조를 이해하고 실력을 키워왔습니다.
+                저는 “해보고 싶은 건 직접 만들어보자”는 기준으로 성장해왔습니다. 항상
+                “이 시스템을 내가 만든다면 어떻게 구현할까?”를 고민하며, 기능을
+                구현하는 과정에서 구조를 이해하고 실력을 키웁니다.
               </p>
-              <p>
-                새로운 기술에 대한 도전을 두려워하지 않습니다. 생소한 기술이라도 빠르게 학습하여 직접 구현해보고, 
-                그 과정에서 얻는 깨달음과 성취감에서 큰 즐거움을 느끼고 있습니다.
+
+              {/* ✅ 증거/근거 문장(면접관 설득용) */}
+              <p className="text-gray-700 dark:text-gray-200 font-medium">
+                예를 들어, <span className="text-primary-600">450만+ 건</span> 규모의 데이터
+                처리에서 Spring Batch 기반 분산/병렬 처리로 성능을 개선했고, Redis 캐시를
+                활용해 실시간 조회 공백 문제를 해결한 경험이 있습니다.
               </p>
+
               <p>
-                함께 성장하는 커뮤니케이션 중심의 개발자입니다. 상대방의 입장과 의도를 고려하며 의견을 나누고, 
-                원활한 소통을 통해 팀과 함께 성장하는 것을 중요하게 생각합니다.
+                새로운 기술에 대한 도전도 즐깁니다. 빠르게 학습한 뒤 작은 PoC로 검증하고,
+                서비스 구조에 자연스럽게 녹여내는 방식으로 적용합니다.
+              </p>
+
+              <p>
+                또한 커뮤니케이션을 중요하게 생각합니다. 상대방의 입장과 의도를 고려하며
+                의견을 나누고, 팀의 목표를 중심으로 함께 성장하는 개발자가 되고자 합니다.
               </p>
             </div>
           </MotionDiv>
         </div>
 
-        {/* Stats */}
+        {/* Stats (팩트형) */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          {[0,1,2,3].map((i) => (
+          {stats.map((s, i) => (
             <MotionDiv
-              key={i}
+              key={s.label}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.35, ease: 'easeOut', delay: i * 0.05 }}
-              className="text-center p-6 bg-primary-50 dark:bg-gray-900 rounded-lg"
+              transition={{ duration: 0.35, ease: "easeOut", delay: i * 0.05 }}
+              className="text-center p-6 bg-primary-50 dark:bg-gray-900 rounded-lg border border-primary-100 dark:border-gray-800"
             >
-              {/* static content is above; keep structure consistent */}
-              {i === 0 && (<><div className="text-3xl font-bold text-primary-600 mb-2">직접</div><div className="text-gray-600 dark:text-gray-300">구현하는</div></>)}
-              {i === 1 && (<><div className="text-3xl font-bold text-primary-600 mb-2">빠른</div><div className="text-gray-600 dark:text-gray-300">학습력</div></>)}
-              {i === 2 && (<><div className="text-3xl font-bold text-primary-600 mb-2">함께</div><div className="text-gray-600 dark:text-gray-300">성장하는</div></>)}
-              {i === 3 && (<><div className="text-3xl font-bold text-primary-600 mb-2">도전</div><div className="text-gray-600 dark:text-gray-300">정신</div></>)}
+              <div className="text-2xl md:text-3xl font-bold text-primary-600 mb-2">
+                {s.value}
+              </div>
+              <div className="text-sm md:text-base text-gray-600 dark:text-gray-300">
+                {s.label}
+              </div>
             </MotionDiv>
           ))}
         </div>
@@ -113,11 +138,15 @@ const About = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <MotionDiv
-              key={index}
+              key={feature.title}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.35, ease: 'easeOut', delay: index * 0.05 }}
+              transition={{
+                duration: 0.35,
+                ease: "easeOut",
+                delay: index * 0.05,
+              }}
               className="text-center p-6"
             >
               <div className="w-16 h-16 mx-auto bg-primary-100 dark:bg-gray-900 rounded-full flex items-center justify-center text-primary-600 mb-4">
@@ -126,9 +155,7 @@ const About = () => {
               <h4 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
                 {feature.title}
               </h4>
-              <p className="text-gray-600 dark:text-gray-300">
-                {feature.description}
-              </p>
+              <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
             </MotionDiv>
           ))}
         </div>
@@ -137,4 +164,4 @@ const About = () => {
   )
 }
 
-export default About 
+export default About
