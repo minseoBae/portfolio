@@ -103,7 +103,7 @@ const Hero = () => {
               href="https://github.com/minseoBae"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-primary-600 transition-colors duration-200"
+              className="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors duration-200"
               aria-label="GitHub 프로필 보기"
             >
               <Github size={24} />
@@ -112,14 +112,14 @@ const Hero = () => {
               href="https://www.linkedin.com/in/minseobae03151999"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-primary-600 transition-colors duration-200"
+              className="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors duration-200"
               aria-label="LinkedIn 프로필 보기"
             >
               <Linkedin size={24} />
             </a>
             <a
               href="mailto:baejjae8218@gmail.com"
-              className="text-gray-600 hover:text-primary-600 transition-colors duration-200"
+              className="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors duration-200"
               aria-label="이메일 보내기"
             >
               <Mail size={24} />
@@ -130,7 +130,7 @@ const Hero = () => {
               href="https://electric-note-712.notion.site/285d12b24bbc8087a8e4d204accaee01?source=copy_link"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-primary-600 transition-colors duration-200"
+              className="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors duration-200"
               aria-label="개발 학습 정리 노션 페이지"
               title="개발 학습 정리 노션 (CS · 백엔드 · DevOps)"
             >
