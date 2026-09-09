@@ -43,6 +43,9 @@ next-env.d.ts
 *.swo
 *~
 
+# Obsidian (로컬 ClaudeMemory 볼트 설정, 저장소와 무관)
+.obsidian/
+
 # OS
 Thumbs.db
 .DS_Store
